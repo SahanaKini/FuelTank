@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Admin - RoadRescue</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script>
+    async function loadData(){
+      const prov = await fetch('/api/providers/all').then(r=>r.json());
+      const req = await fetch('/api/requests/all').then(r=>r.json());
+      document.getElementById('prov-count').innerText = prov.length;
+      document.getElementById('req-count').innerText = req.length;
+    }
+    window.onload = loadData;
+  </script>
+</head>
+<body>
+  <header class="topbar admin">ADMIN</header>
+  <main class="admin-main">
+    <div class="card">Total Providers: <strong id="prov-count">0</strong></div>
+    <div class="card">Total Requests: <strong id="req-count">0</strong></div>
+  </main>
+</body>
+</html>

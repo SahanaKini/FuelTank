@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Provider Sign Up - RoadRescue</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script>
+    async function submitProvider(e){
+      e.preventDefault();
+      const data = {
+        stationName: document.getElementById('stationName').value,
+        inchargeName: document.getElementById('inchargeName').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        address: document.getElementById('address').value,
+        fuelAvailable: document.getElementById('fuelAvailable').checked,
+        towAvailable: document.getElementById('towAvailable').checked,
+        tireAvailable: document.getElementById('tireAvailable').checked,
+        chargePerKm: parseFloat(document.getElementById('chargePerKm').value || 0)
+      };
+      const res = await fetch('/api/providers/signup', {
+        method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)
+      });
+      const obj = await res.json();
+      alert('Provider created: ' + obj.stationName);
+      window.location='/';
+    }
+  </script>
+</head>
+<body class="form-page">
+  <div class="form-box">
+    <h2>Sign Up - Service Station</h2>
+    <form onsubmit="submitProvider(event)">
+      <input id="stationName" placeholder="Enter Service Station Name" required>
+      <input id="inchargeName" placeholder="Enter Incharge Name" required>
+      <input id="phone" placeholder="Enter Phone Number" required>
+      <input id="email" placeholder="Enter Your Email ID" type="email" required>
+      <input id="chargePerKm" placeholder="Enter The Service Charge Per Kilometer" type="number" step="0.01">
+      <textarea id="address" placeholder="Enter The Address"></textarea>
+      <label><input id="fuelAvailable" type="checkbox"> Fuel Available</label><br>
+      <label><input id="towAvailable" type="checkbox"> Tow Available</label><br>
+      <label><input id="tireAvailable" type="checkbox"> Tire Service</label><br>
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+</body>
+</html>
