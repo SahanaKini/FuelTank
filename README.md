@@ -8,7 +8,7 @@ The system also includes: Separate login for service providers, Admin dashboard,
 
 This project solves real-life travel problems where drivers get stranded due to fuel shortage, punctured tires, or vehicle failures.
 
-Features
+Features:
 - User Module
 Register & Login
 Real-time service request
